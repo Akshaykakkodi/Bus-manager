@@ -14,9 +14,13 @@ class _Login_screenState extends State<Login_screen> {
   TextEditingController username=TextEditingController();
   TextEditingController password=TextEditingController();
   int count=0;
-  var ob;
+  bool ob=true;
  var fkey=GlobalKey<FormState>();
-  @override
+ var apiKey;
+ var accessToken;
+ var refreshToken;
+
+ @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Form(
@@ -97,10 +101,12 @@ class _Login_screenState extends State<Login_screen> {
                         if(fkey.currentState!.validate()){
                           EasyLoading.show( status: "Loading");
                           var logData= await Api.loginApi(username.text,password.text);
-                          print(logData["status"]);
+                          apiKey=logData["url_id"];
+                          accessToken=logData["access"];
                           if(logData["status"]==true){
+                            print(apiKey);
 
-                            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Home_screen(),), (route) => false);
+                            Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Home_screen(accessToken:accessToken,apiKey:apiKey),), (route) => false);
                             EasyLoading.dismiss();
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(logData["message"])));
                           }else if(logData["status"]==false){

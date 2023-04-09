@@ -1,7 +1,15 @@
+import 'package:bus_management/screens/manage_bus.dart';
+import 'package:bus_management/screens/manage_drivers.dart';
 import 'package:flutter/material.dart';
 
+import 'manage_bus_2.dart';
+
 class Home_screen extends StatefulWidget {
-  const Home_screen({Key? key}) : super(key: key);
+  var accessToken;
+
+  var apiKey;
+
+   Home_screen({Key? key,required this.accessToken,required this.apiKey}) : super(key: key);
 
   @override
   State<Home_screen> createState() => _Home_screenState();
@@ -81,37 +89,42 @@ class _Home_screenState extends State<Home_screen> {
                   ]
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Stack(
-                  children:[Container(
-                    height: 200,
-                    width: 150,
-                    decoration: BoxDecoration(borderRadius:BorderRadius.circular(10),color: Colors.black),
-                    child:  Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children:  const [
-                        Padding(
-                          padding: EdgeInsets.only(top: 12.0,left: 12),
-                          child: Text("Driver",style: TextStyle(color:Colors.white,fontWeight: FontWeight.bold,fontSize: 18),),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 12.0),
-                          child: Text("Manage your driver",style: TextStyle(color:Colors.white,),
+              InkWell(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Manage_drivers(accessToken:widget.accessToken,apiKey:widget.apiKey),));
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Stack(
+                    children:[Container(
+                      height: 200,
+                      width: 150,
+                      decoration: BoxDecoration(borderRadius:BorderRadius.circular(10),color: Colors.black),
+                      child:  Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children:  const [
+                          Padding(
+                            padding: EdgeInsets.only(top: 12.0,left: 12),
+                            child: Text("Driver",style: TextStyle(color:Colors.white,fontWeight: FontWeight.bold,fontSize: 18),),
                           ),
-                        )
-                      ],
-                    ),
-                  ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 70.0,left: 20),
-                      child: Align(
-                        alignment: Alignment.bottomRight,
-                        child:Image.asset('Assets/images/dr-removebg-preview.png',scale:4,),
+                          Padding(
+                            padding: EdgeInsets.only(left: 12.0),
+                            child: Text("Manage your driver",style: TextStyle(color:Colors.white,),
+                            ),
+                          )
+                        ],
                       ),
-                    )
-                  ]
+                    ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 70.0,left: 20),
+                        child: Align(
+                          alignment: Alignment.bottomRight,
+                          child:Image.asset('Assets/images/dr-removebg-preview.png',scale:4,),
+                        ),
+                      )
+                    ]
+                  ),
                 ),
               ),
               
@@ -155,7 +168,7 @@ class _Home_screenState extends State<Home_screen> {
                           ),
 
                           MaterialButton(onPressed: () {
-
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => Manage_bus_2(),));
                           },child: Text("Manage",style: TextStyle(color: Colors.white),),color: Colors.red,)
                         ],
                       ),
