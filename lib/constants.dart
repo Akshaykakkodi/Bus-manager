@@ -48,6 +48,52 @@ class Api{
       return data;
     }
   }
+
+ static Future<dynamic> busList(Map<String, String> headers,String apiKey) async {
+    var response=await get(Uri.parse("http://flutter.noviindus.co.in/api/BusListApi/$apiKey/"),headers: headers);
+    if(response.statusCode==200){
+      var data= jsonDecode(response.body);
+      return data;
+    }
+  }
   
   
+}
+class Bus{
+ static List constantBusList=[
+    {
+      "bus_id": "1",
+      "bus_name": "KSRTC",
+      "bus_type":"Swift scania P-series",
+      "seat": "1*3",
+      "driver":"asasa",
+      "license":"saa"
+    },
+    {
+      "bus_id": "2",
+      "bus_name": "KSRTC",
+      "bus_type":"Swift scania P-series",
+      "seat": "1*3",
+      "driver":"arjuu",
+      "license":"e141"
+
+    },
+    {
+      "bus_id": "3",
+      "bus_name": "KSRTC",
+      "bus_type":"Super fast",
+      "seat": "2*2",
+      "driver":"jhon",
+      "license":"678904"
+    },
+    {
+      "bus_id": "4",
+      "bus_name": "KSRTC",
+      "bus_type":"Low floor",
+      "seat": "2*2",
+      "driver":"Akshay",
+      "license":"78657"
+    },
+
+  ];
 }

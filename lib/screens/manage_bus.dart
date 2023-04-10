@@ -1,13 +1,23 @@
+import 'package:bus_management/screens/assign_driver.dart';
 import 'package:flutter/material.dart';
 
 class Manage_bus extends StatefulWidget {
-  const Manage_bus({Key? key}) : super(key: key);
+  var bus_list;
+
+  var accessToken;
+
+  var apiKey;
+
+  var index;
+
+  Manage_bus({Key? key,required this.accessToken, required this.apiKey,required this.bus_list,required this.index}) : super(key: key);
 
   @override
   State<Manage_bus> createState() => _Manage_busState();
 }
 
 class _Manage_busState extends State<Manage_bus> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,37 +26,42 @@ class _Manage_busState extends State<Manage_bus> {
           title: Text("KSRTC Swift Scania P-series ",style: TextStyle(fontSize: 17),),
           centerTitle: true,
       ),
-      body: Column(
+      body:Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(15.0),
-            child: Container(
-              height: 150,
-              width: double.infinity,
-              decoration: BoxDecoration(borderRadius:BorderRadius.circular(10),color: Colors.black),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            child: InkWell(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Assign_driver(accessToken:widget.accessToken,apiKey:widget.apiKey,index: widget.index,),));
+              },
+              child: Container(
+                height: 150,
+                width: double.infinity,
+                decoration: BoxDecoration(borderRadius:BorderRadius.circular(10),color: Colors.black),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
 
-                    children:   [
-                      Padding(
-                        padding: EdgeInsets.only(top: 35.0,left: 40),
-                        child: Text("Rohit Sharma",style: TextStyle(color:Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 40.0,top: 10),
-                        child: Text("License no: pj15546jh1",style: TextStyle(color:Colors.white,),
+                      children:   [
+                        Padding(
+                          padding: EdgeInsets.only(top: 35.0,left: 40),
+                          child: Text(widget.bus_list["driver"],style: TextStyle(color:Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),
                         ),
-                      ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 40.0,top: 10),
+                          child: Text("License no: ${widget.bus_list["license"]}",style: TextStyle(color:Colors.white,),
+                          ),
+                        ),
 
-                    ],
+                      ],
 
-                  ),
-                  Image.asset("Assets/images/dr-removebg-preview.png",height: 120,width: 110,)
-                ],
+                    ),
+                    Image.asset("Assets/images/dr-removebg-preview.png",height: 120,width: 110,)
+                  ],
+                ),
               ),
             ),
           ),
@@ -291,7 +306,10 @@ class _Manage_busState extends State<Manage_bus> {
             ),
           )
         ],
-      ),
+      )
+
+
+
     );
   }
 }

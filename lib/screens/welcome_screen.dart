@@ -39,10 +39,10 @@ class _Welcome_screenState extends State<Welcome_screen> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 95.0,bottom: 40),
+                        padding: const EdgeInsets.only(left: 90.0,bottom: 30),
                         child: Align(
                           alignment: Alignment.center,
-                          child: Icon(Icons.circle,color:Colors.yellow,),
+                          child: Icon(Icons.arrow_drop_down,size: 40,color:Colors.yellow,),
                         ),
                       )
 

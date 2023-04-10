@@ -20,7 +20,7 @@ class _Add_driversState extends State<Add_drivers> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add Driver"),
+        title: const Text("Add Driver"),
         centerTitle: true,
         backgroundColor: Colors.black,
       ),
@@ -99,7 +99,7 @@ class _Add_driversState extends State<Add_drivers> {
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.red,),
                 height: 60,
                 width: double.infinity,
-                child: Center(child: Text("Save",style: TextStyle(fontSize: 18,color: Colors.white),)),
+                child: const Center(child: Text("Save",style: TextStyle(fontSize: 18,color: Colors.white),)),
               ),
             ),
           ),
